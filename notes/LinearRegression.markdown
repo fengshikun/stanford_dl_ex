@@ -1,3 +1,4 @@
+##1.一些前言
 线性回归：to start out we will use linear functions: 
 
 \begin{equation}
@@ -14,3 +15,13 @@ $$
         {\frac{\partial J(\theta)}{\partial \theta_n}}
         \end{bmatrix}
 $$
+
+$J(\theta)$对于某个参数$\theta_j$的求法是：
+
+$$
+\frac{\partial J(\theta)}{\partial \theta_j} = \sum_{i}x_{j}^{i}(h_{\theta}(x^{i})-y^{(i)})
+$$
+
+##2.关于作业
+y = randperm(n)
+y是把1到n这些数随机打乱得到的一个数字序列。
