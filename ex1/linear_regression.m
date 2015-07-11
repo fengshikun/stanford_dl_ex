@@ -22,14 +22,14 @@ function [f,g] = linear_regression(theta, X,y)
   %        computed gradient in 'g'.
   
 %%% YOUR CODE HERE %%%
-  media = 0
+  media = 0;
   for i = 1:m
-      media += X(:,1)*theta - Y(i)
-      f += media^2
-  f = f/2
+      media = media + dot(X(:,i),theta) - y(i);
+      f = f + media^2;
+  end
+  f = f/2;
   
   for i = 1:n
-      g(i) = media
-      for j = 1:m
-         g(i) += X(i,j)   
+      g(i) = media*sum(X(i,:));
+  end
       
