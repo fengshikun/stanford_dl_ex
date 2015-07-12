@@ -29,7 +29,9 @@ function [f,g] = linear_regression(theta, X,y)
   end
   f = f/2;
   
-  for i = 1:n
-      g(i) = media*sum(X(i,:));
+  for j = 1:n
+      for i = 1:m
+        g(j) = g(j) + X(j,i)*(dot(X(:,i),theta) - y(i));
+      end
   end
       
