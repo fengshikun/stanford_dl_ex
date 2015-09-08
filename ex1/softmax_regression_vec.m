@@ -28,5 +28,20 @@ function [f,g] = softmax_regression(theta, X,y)
   %
 %%% YOUR CODE HERE %%%
   
+  theta = [theta, zeros(1,size(theta,1))'];%n*K add one more 
+  y_proto = exp(theta'*X);%K*m
+  %y_proto = [y_proto; ones(1,size(y_proto,2))];%K*m
+  
+  y_proto_sum = sum(y_proto,1);%1*m
+  
+  quotinent = bsxfun(@rdivide, y_proto, y_proto_sum);%K*m
+  m_component = log(quotinent);%K*m
+  index = sub2ind(size(y_proto),y,1:size(y_proto,2));
+  %Please refer to http://cn.mathworks.com/help/matlab/ref/sub2ind.html
+  f = -sum(m_component(index));
+  indicator = zeros(size(y_proto));
+  indicator(index)=1;
+  g =  -X*(indicator - quotinent)';
+  g = g(:,1:end - 1);
   g=g(:); % make gradient a vector for minFunc
 

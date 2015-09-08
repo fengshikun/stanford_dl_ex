@@ -65,7 +65,7 @@ $$
 \nabla_{\theta^{(k)}} J(\theta) = - \sum_{i=1}^{m}{ \left[ x^{(i)} \left( 1\{ y^{(i)} = k\}  - P(y^{(i)} = k | x^{(i)}; \theta) \right) \right]  }
 \end{align}
 $$
-注意到$\nabla_{\theta^{(k)}} J(\theta)$本身是一个向量。所以$J(\theta)$相对于$\theta^{(k)}$的第j个元素的偏导就是该向量的第j个元素。
+注意到$\nabla_{\theta^{(k)}} J(\theta)$本身是一个向量（因为$x^{(i)}$是一个向量）。所以$J(\theta)$相对于$\theta^{(k)}$的第j个元素的偏导$\frac{\partial J(\theta)}{\partial \theta_{j}^k}$就是该向量的第j个元素。
 
 softmax regression的要求的参数有一个性质是：redundant. 看一下下面公式的推导：
 
@@ -124,4 +124,13 @@ h(x) &=
 \end{equation}
 
 只剩下$\theta^{(2)}-\theta^{(1)}$了，我们将它替换为$\theta'$，这样就将要求解的两个参数变成了一个参数。
+
+在做作业的时候，有一个问题困扰我了好久
+1.在作业说明中：The starter code will reshape θ into a n-by-(K-1) matrix (for K=10 classes).
+2.在matlab代码中：% We only use num_classes-1 columns, since the last column is always assumed 0.
+
+想了很久，原因就是在本节中的Properties of softmax regression parameterization那一段。
+
+3. g = -X * (indicator - p_y)'; % K * n这句代码是求$\theta$偏导的关键。
+想想$\frac{\partial J(\theta)}{\partial \theta_{1}^k,\frac{\partial J(\theta)}{\partial \theta_{2}^k,\frac{\partial J(\theta)}{\partial \theta_{3}^k...$等等是怎么来的
 
